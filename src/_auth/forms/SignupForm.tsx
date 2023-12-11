@@ -16,10 +16,9 @@ import { useCreateUserAccount } from "@/lib/react-query/queriesAndMutations"
 
 const SignupForm = () => {
     const { toast } = useToast();
-    // const { checkAuthUser } = useUserContext();
     const navigate = useNavigate();
     const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
-    // const { mutateAsync: signInAccount } = useSignInAccount();
+
     // 1. Define your form.
     const form = useForm<z.infer<typeof SignUpValidation>>({
         resolver: zodResolver(SignUpValidation),
@@ -38,24 +37,10 @@ const SignupForm = () => {
         if (!newUser) {
             return toast({ 'title': 'Sign up failed! Please try again.' });
         }
-        // const session = await signInAccount({
-        //     email: values.email,
-        //     password: values.password,
-        // });
-
-        // if (!session) {
-        //     return toast({ title: 'Sign in failed. Please try again.' })
-        // }
-
-        // const isLoggedIn = await checkAuthUser();
         navigate('/sign-in')
-        // if (isLoggedIn) {
-        //     form.reset();
-        // } else {
-        //     return toast({ 'title': 'Signup Failed! Please try again!' })
-        // }
         console.log(newUser)
     }
+    
     return (
         <Form {...form}>
             <div className="sm:w-420 flex-center flex-col">

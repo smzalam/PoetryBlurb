@@ -21,7 +21,6 @@ const App = () => {
                 <Route element={<RootLayout />}>
                     <Route index element={<Home />} />
                 </Route>
-
             </Routes>
             <Toaster></Toaster>
         </main>
